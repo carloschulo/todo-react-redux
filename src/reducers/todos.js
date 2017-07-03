@@ -22,12 +22,12 @@ export default (state = nameInitialState, action) => {
     case COMPLETE_TODO:
       return state.map(
         todo =>
-          (todo.id === action.id
+          todo.id === action.id
             ? {
                 ...todo,
                 completed: !todo.completed
               }
-            : todo)
+            : todo
       );
     case DELETE_TODO:
       return state.filter(todo => todo.id !== action.id);

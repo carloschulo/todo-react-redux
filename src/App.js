@@ -42,10 +42,10 @@ class App extends Component {
     this.props.deleteTodo(id);
   }
 
-  handleDeleteComplete(){
+  handleDeleteComplete() {
     this.props.deleteAllCompleteTodo();
   }
-  handleShowComplete(){
+  handleShowComplete() {
     this.props.showAllCompleteTodo();
   }
 
@@ -55,7 +55,7 @@ class App extends Component {
         <form
           className="App-intro"
           onSubmit={this.handleSubmit}
-          ref={input => this.form = input}
+          ref={input => (this.form = input)}
         >
           <input
             value={this.state.text}
@@ -83,8 +83,11 @@ class App extends Component {
         <br />
         <hr />
         <br />
-        <button onClick={this.handleDeleteComplete}>Delete All Completed</button>
-         <button onClick={this.handleShowComplete}>Show All Completed</button>
+        {/*<button onClick={this.handleShowAll}>Show All</button>*/}
+        <button onClick={this.handleDeleteComplete}>
+          Delete All Completed
+        </button>
+        <button onClick={this.handleShowComplete}>Show All Completed</button>
       </div>
     );
   }
@@ -94,5 +97,11 @@ export default connect(
   state => ({
     todos: state.todos
   }),
-  { createTodo, completeTodo, deleteTodo, deleteAllCompleteTodo, showAllCompleteTodo }
+  {
+    createTodo,
+    completeTodo,
+    deleteTodo,
+    deleteAllCompleteTodo,
+    showAllCompleteTodo
+  }
 )(App);
