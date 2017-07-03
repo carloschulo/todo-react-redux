@@ -3,7 +3,8 @@ import {
   CREATE_TODO,
   COMPLETE_TODO,
   DELETE_TODO,
-  DELETE_ALL_COMPLETE_TODO
+  DELETE_ALL_COMPLETE_TODO,
+  SHOW_COMPLETED_TODO
 } from "../actions/todos";
 
 const nameInitialState = [];
@@ -32,6 +33,8 @@ export default (state = nameInitialState, action) => {
       return state.filter(todo => todo.id !== action.id);
     case DELETE_ALL_COMPLETE_TODO:
       return state.filter(todo => !todo.completed);
+    case SHOW_COMPLETED_TODO:
+      return state.filter(todo => todo.completed);
     default:
       return state;
   }

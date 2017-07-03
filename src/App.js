@@ -5,7 +5,8 @@ import {
   createTodo,
   completeTodo,
   deleteTodo,
-  deleteAllCompleteTodo
+  deleteAllCompleteTodo,
+  showAllCompleteTodo
 } from "./actions/todos";
 
 import "./App.css";
@@ -18,7 +19,7 @@ class App extends Component {
     this.handleComplete = this.handleComplete.bind(this);
     this.handleDeleted = this.handleDeleted.bind(this);
     this.handleDeleteComplete = this.handleDeleteComplete.bind(this);
-
+    this.handleShowComplete = this.handleShowComplete.bind(this);
     this.state = {
       text: ""
     };
@@ -43,6 +44,9 @@ class App extends Component {
 
   handleDeleteComplete(){
     this.props.deleteAllCompleteTodo();
+  }
+  handleShowComplete(){
+    this.props.showAllCompleteTodo();
   }
 
   render() {
@@ -79,7 +83,8 @@ class App extends Component {
         <br />
         <hr />
         <br />
-        <button onClick={this.handleDeleteComplete}>Delete All</button>
+        <button onClick={this.handleDeleteComplete}>Delete All Completed</button>
+         <button onClick={this.handleShowComplete}>Show All Completed</button>
       </div>
     );
   }
@@ -89,5 +94,5 @@ export default connect(
   state => ({
     todos: state.todos
   }),
-  { createTodo, completeTodo, deleteTodo, deleteAllCompleteTodo }
+  { createTodo, completeTodo, deleteTodo, deleteAllCompleteTodo, showAllCompleteTodo }
 )(App);

@@ -1,18 +1,25 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { createLogger } from 'redux-logger';
+import { createStore, applyMiddleware, compose } from "redux";
+import { createLogger } from "redux-logger";
 
-import rootReducer from './reducers';
+import rootReducer from "./reducers";
 
-const middlewares = [
-  createLogger()
-];
+const middlewares = [createLogger()];
+
+const persistedState = {
+  todos: [
+    {
+      id: 0,
+      text: "Welcome back",
+      completed: false
+    }
+  ]
+};
 
 export default createStore(
   rootReducer,
-  undefined,
+  persistedState,
   compose(
     applyMiddleware(...middlewares),
-    window.devToolsExtension ? window.devToolsExtension() : f=>f
+    window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );
-
