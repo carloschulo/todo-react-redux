@@ -1,5 +1,10 @@
 import uuid from "uuid/v4";
-import { CREATE_TODO, COMPLETE_TODO } from "../actions/todos";
+import {
+  CREATE_TODO,
+  COMPLETE_TODO,
+  DELETE_TODO,
+  DELETE_ALL_COMPLETE_TODO
+} from "../actions/todos";
 
 const nameInitialState = [];
 export default (state = nameInitialState, action) => {
@@ -23,6 +28,10 @@ export default (state = nameInitialState, action) => {
               }
             : todo)
       );
+    case DELETE_TODO:
+      return state.filter(todo => todo.id !== action.id);
+    case DELETE_ALL_COMPLETE_TODO:
+      return state.filter(todo => !todo.completed);
     default:
       return state;
   }

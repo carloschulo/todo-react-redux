@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { createTodo, completeTodo } from "./actions/todos";
+import {
+  createTodo,
+  completeTodo,
+  deleteTodo,
+  deleteAllCompleteTodo
+} from "./actions/todos";
 
 import "./App.css";
 
@@ -11,6 +16,9 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleComplete = this.handleComplete.bind(this);
+    this.handleDeleted = this.handleDeleted.bind(this);
+    this.handleDeleteComplete = this.handleDeleteComplete.bind(this);
+
     this.state = {
       text: ""
     };
@@ -28,6 +36,15 @@ class App extends Component {
   handleComplete(id) {
     this.props.completeTodo(id);
   }
+
+  handleDeleted(id) {
+    this.props.deleteTodo(id);
+  }
+
+  handleDeleteComplete(){
+    this.props.deleteAllCompleteTodo();
+  }
+
   render() {
     return (
       <div className="App">
@@ -55,10 +72,14 @@ class App extends Component {
                 type="checkbox"
                 value={completed}
               />
+              <button onClick={() => this.handleDeleted(id)}>Delete</button>
             </div>
           );
         })}
-
+        <br />
+        <hr />
+        <br />
+        <button onClick={this.handleDeleteComplete}>Delete All</button>
       </div>
     );
   }
@@ -68,5 +89,5 @@ export default connect(
   state => ({
     todos: state.todos
   }),
-  { createTodo, completeTodo }
+  { createTodo, completeTodo, deleteTodo, deleteAllCompleteTodo }
 )(App);
