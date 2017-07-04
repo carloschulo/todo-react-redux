@@ -5,8 +5,7 @@ import {
   createTodo,
   completeTodo,
   deleteTodo,
-  deleteAllCompleteTodo,
-  showAllCompleteTodo
+  deleteAllCompleteTodo
 } from "./actions/todos";
 
 import "./App.css";
@@ -19,7 +18,6 @@ class App extends Component {
     this.handleComplete = this.handleComplete.bind(this);
     this.handleDeleted = this.handleDeleted.bind(this);
     this.handleDeleteComplete = this.handleDeleteComplete.bind(this);
-    this.handleShowComplete = this.handleShowComplete.bind(this);
     this.state = {
       text: ""
     };
@@ -48,7 +46,7 @@ class App extends Component {
   handleShowComplete() {
     this.props.showAllCompleteTodo();
   }
-
+ 
   render() {
     return (
       <div className="App">
@@ -83,11 +81,9 @@ class App extends Component {
         <br />
         <hr />
         <br />
-        {/*<button onClick={this.handleShowAll}>Show All</button>*/}
         <button onClick={this.handleDeleteComplete}>
           Delete All Completed
         </button>
-        <button onClick={this.handleShowComplete}>Show All Completed</button>
       </div>
     );
   }
@@ -101,7 +97,6 @@ export default connect(
     createTodo,
     completeTodo,
     deleteTodo,
-    deleteAllCompleteTodo,
-    showAllCompleteTodo
+    deleteAllCompleteTodo
   }
 )(App);
