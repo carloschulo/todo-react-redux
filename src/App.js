@@ -61,6 +61,8 @@ class App extends Component {
             type="text"
             name="text"
             placeholder="create a todo"
+            ref={input => this.input = input}
+            required
           />
         </form>
         <br />
