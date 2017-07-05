@@ -81,13 +81,14 @@ class App extends Component {
         {this.props.todos.map(({ text, id, completed }) => {
           return (
             <div key={id} className="todos">
-             <span>{text} </span> 
               <input
                 onChange={() => this.handleComplete(id)}
                 type="checkbox"
                 value={completed}
               />
-
+              <span>
+                {text}{" "}
+              </span>
               <button
                 onClick={() => this.handleDeleted(id)}
                 className="btn btn-default"
