@@ -55,41 +55,52 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="container">
         <form
           className="App-intro"
           onSubmit={this.handleSubmit}
           ref={input => (this.form = input)}
         >
-          <input
-            value={this.state.text}
-            onChange={this.handleChange}
-            type="text"
-            name="text"
-            placeholder="create a todo"
-            ref={input => (this.input = input)}
-            required
-          />
+          <div className="form-group">
+            <label htmlFor="todo">Add a Todo Item</label>
+            <input
+              id="todo"
+              className="form-control"
+              value={this.state.text}
+              onChange={this.handleChange}
+              type="text"
+              name="text"
+              placeholder="create a todo"
+              ref={input => (this.input = input)}
+              required
+            />
+          </div>
         </form>
         <br />
 
         {this.props.todos.map(({ text, id, completed }) => {
           return (
-            <div key={id}>
-              {text}
+            <div key={id} className="todos">
+             <span>{text} </span> 
               <input
                 onChange={() => this.handleComplete(id)}
                 type="checkbox"
                 value={completed}
               />
-              <button onClick={() => this.handleDeleted(id)}>Delete</button>
+
+              <button
+                onClick={() => this.handleDeleted(id)}
+                className="btn btn-default"
+              >
+                X
+              </button>
             </div>
           );
         })}
         <br />
         <hr />
         <br />
-        <button onClick={this.handleDeleteComplete}>
+        <button onClick={this.handleDeleteComplete} className="btn btn-default">
           Delete All Completed
         </button>
       </div>
