@@ -11,6 +11,12 @@ import {
 import "./App.css";
 
 class App extends Component {
+  static propTypes = {
+    completeTodo: React.PropTypes.func,
+    deleteTodo: React.PropTypes.func,
+    deleteAllCompleteTodo: React.PropTypes.func,
+    todos: React.PropTypes.array
+  };
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -46,7 +52,7 @@ class App extends Component {
   handleShowComplete() {
     this.props.showAllCompleteTodo();
   }
- 
+
   render() {
     return (
       <div className="App">
@@ -61,7 +67,7 @@ class App extends Component {
             type="text"
             name="text"
             placeholder="create a todo"
-            ref={input => this.input = input}
+            ref={input => (this.input = input)}
             required
           />
         </form>
